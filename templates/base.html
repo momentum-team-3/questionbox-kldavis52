@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block meta %}{% endblock %}
+  <title>{% block title %}Recipe Book{% endblock %}</title>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="{% static 'vendor/dragula/dragula.min.css' %}">
+</head>
+<body class="sans-serif">
+  <div class="mw8 center ph3 pv4">
+    <div class="pa2 bg-dark-red white">
+      <h1><a class="white no-underline" href="{% url 'homepage' %}">Recipe Book</a></h1>
+      {% if user.is_authenticated %}
+      <div>
+        Hello, {{ user.username }}!
+        <a href="{% url 'auth_logout' %}">Logout</a>
+      </div>
+      {% endif %}
+    </div>
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="{% static 'vendor/dragula/dragula.min.js' %}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
