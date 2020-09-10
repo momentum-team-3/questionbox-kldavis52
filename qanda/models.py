@@ -9,7 +9,7 @@ class Question(models.Model):
     date_time = models.DateTimeField(auto_now_add=True)
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
     tags = models.ManyToManyField(to="Tag", related_name="questions", blank=True)
-    answer = models.ForeignKey("Answer", on_delete=models.CASCADE, blank=True, related_name='questions')
+    answer = models.ForeignKey("Answer", on_delete=models.CASCADE, blank=True, null=True, related_name='questions')
     star_by_user = models.ManyToManyField(to=User, related_name="questions", blank=True)
 
 
@@ -30,7 +30,7 @@ class Tag(models.Model):
         return self.tag
 
 class Answer(models.Model):
-    body = models.TextField(null=False, blank=False)
+    body = models.TextField(null=True, blank=True)
     date_time = models.DateTimeField(auto_now_add=True)
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
     star_by_user = models.ManyToManyField(to=User, related_name="answers", blank=True)
