@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.models import AnonymousUser
-
+from .models import Question, Tag, Answer
+from users.models import User
 # Create your views here.
 
 def homepage(request):

@@ -1,5 +1,30 @@
+{% extends "base.html"%} 
 {% block content %}
 
-<h1>Login User Page</h1>
+<p><a class="link text" href="{% url 'questions' %}">Go to Questions</a></p>
+<br />
+<h2>Enter login info here</h2>
 
+{% if retry %}
+<p style="color:red;font-weight:bold;">
+  Invalid username/password combination.
+</p>
+{% endif %}
+
+<form method="POST">
+  {% csrf_token %}
+  <p>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" />
+  </p>
+  <p>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" />
+  </p>
+  <input type="submit" value="login" />
+</form>
+<div>
+  <p>No account? Register below.</p>
+  <a class="link text" href="{% url 'register' %}">Click here to Register</a>
+</div>
 {% endblock %}

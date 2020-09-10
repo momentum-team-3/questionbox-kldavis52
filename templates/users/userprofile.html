@@ -1,0 +1,15 @@
+{% extends "base.html"%} 
+
+{% block content %}
+<p><a class="link text" href="{% url 'userprofile' %}"> Back to Snippets</a></p><br>
+
+<h2> Hello {{ user }}, welcome to your Snippets </h2>
+
+{% for question in questions %}
+<p id="title">
+     <strong>{{question.title}}</strong>
+</p>
+<p id="question">{{question.body}}</p>
+{% endfor %}
+    
+{% endblock %}

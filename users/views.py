@@ -3,6 +3,8 @@ from .forms import NewUserCreationForm, ChangeUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import AnonymousUser
+from users.models import User
+from qanda.models import Question, Tag, Answer
 # Create your views here.
 
 def register(request):
@@ -15,14 +17,14 @@ def register(request):
             user = authenticate(username=username, password=raw_password)
             messages.success(request, 'Account created successfully')
             login(request, user)
-            return redirect(to='snippets')
+            return redirect(to='qanda/questions')
     else:
         form = NewUserCreationForm()
         if form.is_valid():
             form.save()
-            return redirect(to='snippets')
+            return redirect(to='qanda/questions')
 
-    return render(request, 'register.html', {'form': form, 'message': messages})
+    return render(request, 'users/register.html', {'form': form, 'message': messages})
 
 def login_user(request):
     retry = False
@@ -32,14 +34,18 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect(to='userprofile', pk=user.pk)
+            return redirect(to='users/userprofile', pk=user.pk)
         else:
             retry = True
-    return render(request, 'login_user.html', {'retry': retry})
+    return render(request, 'users/login_user.html', {'retry': retry})
 
 def logout_user(request):
     logout(request)
-    return render(request, 'logout_user.html')
+    return render(request, 'users/logout_user.html')
 
-def userprofile(request):
-    pass
+def userprofile(request, pk):
+    if not request.user.is_authenticated:
+        return redirect(to='users/login_user')
+    user = User.objects.get(pk=pk)
+    questions = Question.objects.filter(user=user)
+    return render(request, 'users/userprofile.html', {'user': user, 'questions': questions})
