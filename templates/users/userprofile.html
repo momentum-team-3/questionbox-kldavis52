@@ -13,9 +13,7 @@
 <p id="question">{{question.body}}</p>
 
 {% for tag in question.tag.all %}
-<div class="tags">
-  <div>{{tag}}</div>
-</div>
+  <p class="tag">{{tag}}</p>
 {% endfor %}
 
 <p class="text" id="date-time">{{question.date_time}}</p>

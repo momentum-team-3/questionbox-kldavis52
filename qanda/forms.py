@@ -1,8 +1,30 @@
 from django import forms
-from .models import Answer, Tag
+from django.forms import CharField, Textarea, TextInput
+from .models import Question, Answer, Tag
 
 class QuestionForm(forms.ModelForm):
-    pass
+    tag_names = forms.CharField(
+        label="Tags",
+        help_text="Enter tags separated by spaces.",
+        widget=forms.TextInput(), #attrs={"class": "pa2 f4 w-100"}
+        required=False)
+    class Meta:
+        model = Question
+        fields = [
+            'title',
+            'body',
+        ]
+        widgets = {
+            'title': forms.TextInput(),
+            'body': forms.Textarea(),
+        }
  
 class AnswerForm(forms.ModelForm):
-    pass
+    class Meta:
+        model = Answer
+        fields = [
+            'body',
+        ]
+        widgets = {
+            'body': forms.Textarea()
+        }
