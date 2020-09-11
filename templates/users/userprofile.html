@@ -22,7 +22,7 @@
 <section class="answers">
      {% for answer in question.answer.all %}
      <p class="answer">{{ answer.body }}</p>
-     <p>{{ answer.user }}<span> | </span>{{ answer.date_time }}</p><br>
+     <p class="text">{{ answer.user }}<span> | </span>{{ answer.date_time }}</p><br>
      {% endfor %}
 </section>
 
