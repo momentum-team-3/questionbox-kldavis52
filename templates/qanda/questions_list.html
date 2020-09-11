@@ -28,7 +28,7 @@
     <p class="tag">{{tag}}</p>
   {% endfor %}
 
-  <p class="text" id="date-time">{{question.date_time}}</p>
+  <p class="text">{{ question.user }}<span> | </span>{{ question.date_time }}</p><br>
   <br />
   {% endfor %}
 </div>
