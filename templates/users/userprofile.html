@@ -19,14 +19,17 @@
 {% endfor %}
 
 <p class="text" id="date-time">{{question.date_time}}</p>
-
-{% endfor %}
+<br>
 
 <section class="answers">
      {% for answer in question.answer.all %}
      <p class="answer">{{ answer.body }}</p>
-     <p>{{ answer.user }}<span> | </span>{{ answer.date_time }}</p>
+     <p>{{ answer.user }}<span> | </span>{{ answer.date_time }}</p><br>
      {% endfor %}
 </section>
+
+{% endfor %}
+
+
 
 {% endblock %}
