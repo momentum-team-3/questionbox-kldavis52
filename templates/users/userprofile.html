@@ -1,17 +1,32 @@
 {% extends "base.html"%} 
-
 {% block content %}
-<p><a class="link text" href="{% url 'questions_list' %}">Return to Questions</a></p>
+<p>
+  <a class="link text" href="{% url 'questions_list' %}">Return to Questions</a>
+</p>
 
-<h2> Hello {{ user }}, welcome to your profile </h2>
+<h2>Hello {{ user }}, welcome to your profile</h2>
 
 {% for question in questions %}
 <p id="title">
-     <strong>{{question.title}}</strong>
+  <strong>{{question.title}}</strong>
 </p>
 <p id="question">{{question.body}}</p>
-<p id="tag">{{question.tag}}</p>
-<p id="date-time">{{question.date_time}}</p>
+
+{% for tag in question.tag.all %}
+<div class="tags">
+  <div>{{tag}}</div>
+</div>
 {% endfor %}
-    
+
+<p class="text" id="date-time">{{question.date_time}}</p>
+
+{% endfor %}
+
+<section class="answers">
+     {% for answer in question.answer.all %}
+     <p class="answer">{{ answer.body }}</p>
+     <p>{{ answer.user }}<span> | </span>{{ answer.date_time }}</p>
+     {% endfor %}
+</section>
+
 {% endblock %}

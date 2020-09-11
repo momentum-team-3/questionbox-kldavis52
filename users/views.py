@@ -40,8 +40,9 @@ def login_user(request):
     return render(request, 'users/login_user.html', {'retry': retry})
 
 def logout_user(request):
+    questions = Question.objects.all()
     logout(request)
-    return render(request, 'qanda/questions_list.html')
+    return render(request, 'qanda/questions_list.html', {'questions': questions})
 
 def userprofile(request, pk):
     if not request.user.is_authenticated:

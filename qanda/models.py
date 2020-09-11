@@ -8,8 +8,8 @@ class Question(models.Model):
     body = models.TextField(null=False, blank=False)
     date_time = models.DateTimeField(auto_now_add=True)
     user = models.OneToOneField(to=User, on_delete=models.CASCADE)
-    tags = models.ManyToManyField(to="Tag", related_name="questions", blank=True)
-    answer = models.ForeignKey("Answer", on_delete=models.CASCADE, blank=True, null=True, related_name='questions')
+    tag = models.ManyToManyField(to="Tag", related_name="questions", blank=True)
+    answer = models.ManyToManyField("Answer",  related_name='questions', blank=True)
     star_by_user = models.ManyToManyField(to=User, related_name="questions", blank=True)
 
 
@@ -32,7 +32,7 @@ class Tag(models.Model):
 class Answer(models.Model):
     body = models.TextField(null=True, blank=True)
     date_time = models.DateTimeField(auto_now_add=True)
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=False, null=False)
     star_by_user = models.ManyToManyField(to=User, related_name="answers", blank=True)
     
     def __str__(self):

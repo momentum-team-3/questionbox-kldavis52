@@ -22,3 +22,10 @@ h2 {
 .text {
     color: whitesmoke;
 }
+
+.tags > div{
+    width: 100px;
+    height:100px;
+    display: inline-block;
+    zoom: 1;
+}

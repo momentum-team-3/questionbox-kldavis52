@@ -3,7 +3,6 @@ from django.contrib.auth.models import AnonymousUser
 from .models import Question, Tag, Answer
 from users.models import User
 # Create your views here.
-    
 
 def questions_list(request):
     logged_in = False
