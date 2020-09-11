@@ -37,4 +37,9 @@ def add_question(request):
 
 @login_required
 def delete_question(request, question_pk):
-    pass
+    question = get_object_or_404(request.user.question, pk=question_pk)
+    if request.method == "POST":
+        question.delete()
+        return redirect(to='userprofile')
+    
+    return render(request, 'qanda/delete_question.html', {'question': question})
