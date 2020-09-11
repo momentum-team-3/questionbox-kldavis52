@@ -17,12 +17,12 @@ def register(request):
             user = authenticate(username=username, password=raw_password)
             messages.success(request, 'Account created successfully')
             login(request, user)
-            return redirect(to='qanda/questions')
+            return redirect(to='/qanda/')
     else:
         form = NewUserCreationForm()
         if form.is_valid():
             form.save()
-            return redirect(to='qanda/questions')
+            return redirect(to='/qanda/')
 
     return render(request, 'users/register.html', {'form': form, 'message': messages})
 
@@ -34,14 +34,14 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect(to='users/userprofile', pk=user.pk)
+            return redirect(to='/qanda/')
         else:
             retry = True
     return render(request, 'users/login_user.html', {'retry': retry})
 
 def logout_user(request):
     logout(request)
-    return render(request, 'users/logout_user.html')
+    return render(request, 'qanda/questions_list.html')
 
 def userprofile(request, pk):
     if not request.user.is_authenticated:

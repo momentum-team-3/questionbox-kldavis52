@@ -21,9 +21,9 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('QandA/', include('qanda.urls')),
+    path('qanda/', include('qanda.urls')),
     path('users/', include('users.urls')),
-    path('', RedirectView.as_view(url='QandA/', permanent=False)),
+    path('', RedirectView.as_view(url='qanda/', permanent=False)),
 ]
 
 if settings.DEBUG:

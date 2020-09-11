@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <h2>Questions & Answers</h2>
+    {% if not logged_in %}
+    <p class="text">Please <a class="link text" href="{% url 'login_user' %}">Login</a> or <a class="link text" href="{% url 'register' %}">Register new account</a></p>
+    {% endif %}
+    {% if logged_in %}
+    <p><a class="link text" href="{% url 'userprofile' pk=user.pk %}">Profile</a><span>  </span><a class="link text" href="{% url 'logout_user' %}">Logout</a> </p>
+    {% endif %}
+  </div>
+<div>
+    
+</div>
+
+{% endblock %}

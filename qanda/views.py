@@ -3,11 +3,11 @@ from django.contrib.auth.models import AnonymousUser
 from .models import Question, Tag, Answer
 from users.models import User
 # Create your views here.
+    
 
-def homepage(request):
-    if not isinstance(request.user, AnonymousUser):
-        return redirect(to='questions')
-    return render(request, 'qanda/homepage.html')
-
-def questions(request):
-    return render(request, 'qanda/questions.html')
+def questions_list(request):
+    logged_in = False
+    if request.user.is_authenticated:
+        logged_in = True
+    questions = Question.objects.all()
+    return render(request, 'qanda/questions_list.html', {'logged_in': logged_in, 'questions': questions})
