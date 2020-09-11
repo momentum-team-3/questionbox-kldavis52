@@ -29,7 +29,7 @@ def add_question(request):
         question.user = request.user
         question.save()
         question.set_tag_names(form.cleaned_data['tag_names'])
-        return redirect(to='question_detail', pk=question.pk)
+        return redirect(to='questions_list', pk=question.pk)
     else:
         form = QuestionForm()
 
