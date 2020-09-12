@@ -1,7 +1,7 @@
 {% extends "base.html"%} 
 {% block content %}
 
-<p><a class="link text" href="{% url 'questions_list' %}">Go to Questions</a></p>
+<p><a class="link text" href="{% url 'questions_list' %}">Return to Questions</a></p>
 <br />
 <h2>Enter login info here</h2>
 
@@ -15,13 +15,13 @@
   {% csrf_token %}
   <p>
     <label for="username">Username:</label>
-    <input type="text" id="username" name="username" />
+    <input type="text" id="username" name="username"/>
   </p>
   <p>
     <label for="password">Password:</label>
-    <input type="password" id="password" name="password" />
+    <input type="password" id="password" name="password"/>
   </p>
-  <input type="submit" value="login" />
+  <input type="submit" value="login"/>
 </form>
 <div>
   <p>No account? Register below.</p>

@@ -1,4 +1,27 @@
 {% extends "base.html" %} 
 {% block content %}
-<h2>Question deails Page</h2>
+
+<p>
+    <a class="link text" href="{% url 'questions_list' %}">Return to Questions</a>
+</p>
+
+<p id="title">
+    <strong>{{question.title}}</strong>
+</p>
+<p id="question">{{question.body}}</p>
+  
+{% for tag in question.tag.all %}
+    <p class="tag">{{tag}}</p>
+{% endfor %}
+
+<p class="text" id="date-time">{{question.date_time}}</p>
+<br>
+
+<section class="answers">
+    {% for answer in answers %}
+    <p class="answer">{{ answer.body }}</p>
+    <p class="text">{{ answer.user }}<span> | </span>{{ answer.date_time }}</p><br>
+    {% endfor %}
+</section>
+
 {% endblock %}

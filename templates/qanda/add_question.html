@@ -1,6 +1,10 @@
 {% extends "base.html" %} 
 {% block content %}
 
+<p>
+  <a class="link text" href="{% url 'questions_list' %}">Return to Questions</a>
+</p><br>
+
 <form action="{% url 'add_question' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}

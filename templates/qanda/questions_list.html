@@ -29,7 +29,7 @@
   <p id="question">{{question.body}}</p>
 
   {% for tag in question.tag.all %}
-    <p class="tag">{{tag}}</p>
+    <p class="tag text">{{tag}}</p>
   {% endfor %}
 
   <p class="text">{{ question.user }}<span> | </span>{{ question.date_time }}</p><br>
