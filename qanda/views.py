@@ -46,3 +46,10 @@ def delete_question(request, question_pk):
     questions = Question.objects.all()
     
     return render(request, 'qanda/userprofile.html', {'user': user, 'questions': questions})
+
+@login_required
+def question_detail(request, pk):
+    question = Question.objects.get(pk=pk)
+    answers = Answer.objects.filter(questions=question)
+    return render(request, 'qanda/question_detail.html', {'question': question, 'answers': answers})
+
