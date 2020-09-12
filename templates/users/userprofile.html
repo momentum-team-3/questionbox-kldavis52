@@ -12,13 +12,14 @@
 </p>
 <p id="question">{{question.body}}</p>
 
-<p class="tag text">
+<p class="text">
   {% for tag in question.tags.all %}
     {{tag}}
   {% endfor %}
-  </p>
+</p>
 
 <p class="text date-time" id="date-time">{{question.date_time}}</p>
+<p><a href="{% url 'delete_question' pk=question.pk %}">Delete Question</a></p>
 <br>
 
 {% endfor %}

@@ -36,16 +36,12 @@ def add_question(request):
     return render(request, 'qanda/add_question.html', {'form': form})
 
 @login_required
-def delete_question(request, question_pk):
-    question = get_object_or_404(request.user.questions, pk=question_pk)
-    if request.method == "POST":
-        question.delete()
-        return redirect(to='questions_list')
-    
+def delete_question(request, pk):
+    question = Question.objects.get(pk=pk)
+    question.delete()
     user = User.objects.get(pk=request.user.pk)
     questions = Question.objects.all()
-    
-    return render(request, 'qanda/userprofile.html', {'user': user, 'questions': questions})
+    return render(request, 'users/userprofile.html', {'user': user, 'questions': questions})
 
 @login_required
 def question_detail(request, pk):

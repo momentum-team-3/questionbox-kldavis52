@@ -6,7 +6,7 @@ class QuestionForm(forms.ModelForm):
     tag_names = forms.CharField(
         label="Tags",
         help_text="Enter tags separated by spaces.",
-        widget=forms.TextInput(), #attrs={"class": "pa2 f4 w-100"}
+        widget=forms.TextInput(),
         required=False)
     class Meta:
         model = Question

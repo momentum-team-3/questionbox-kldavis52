@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import NewUserCreationForm, ChangeUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import AnonymousUser
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
+
 from users.models import User
 from qanda.models import Question, Tag, Answer
+from .forms import NewUserCreationForm, ChangeUserForm
+
 # Create your views here.
 
 def register(request):
@@ -44,6 +48,7 @@ def logout_user(request):
     logout(request)
     return render(request, 'qanda/questions_list.html', {'questions': questions})
 
+@login_required
 def userprofile(request, pk):
     if not request.user.is_authenticated:
         return redirect(to='users/login_user')
