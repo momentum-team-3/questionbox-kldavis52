@@ -34,8 +34,10 @@
   {% endfor %}
   </p>
 
-  <p class="footer text">{{ question.user }}<span> | </span>{{ question.date_time }}</p><br>
-  <br />
+  <p class="footer text">{{ question.user }}<span> | </span>{{ question.date_time }}</p>
+  <p><a class="link text" href="{% url 'question_detail' pk=question.pk %}">Return to Questions</a></p>
+  <br>
+  <br>
   {% endfor %}
 </div>
 
