@@ -22,3 +22,7 @@ h2 {
 .text {
     color: whitesmoke;
 }
+
+.tag {
+    padding-left:5em
+}

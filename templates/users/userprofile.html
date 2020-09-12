@@ -12,19 +12,14 @@
 </p>
 <p id="question">{{question.body}}</p>
 
-{% for tag in question.tag.all %}
-  <p class="tag">{{tag}}</p>
-{% endfor %}
+<p class="tag text">
+  {% for tag in question.tags.all %}
+    {{tag}}
+  {% endfor %}
+  </p>
 
-<p class="text" id="date-time">{{question.date_time}}</p>
+<p class="text date-time" id="date-time">{{question.date_time}}</p>
 <br>
-
-<section class="answers">
-     {% for answer in question.answer.all %}
-     <p class="answer">{{ answer.body }}</p>
-     <p class="text">{{ answer.user }}<span> | </span>{{ answer.date_time }}</p><br>
-     {% endfor %}
-</section>
 
 {% endfor %}
 

@@ -28,11 +28,13 @@
   </p>
   <p id="question">{{question.body}}</p>
 
-  {% for tag in question.tag.all %}
-    <p class="tag text">{{tag}}</p>
+  <p class="tag text">
+  {% for tag in question.tags.all %}
+    {{tag}}
   {% endfor %}
+  </p>
 
-  <p class="text">{{ question.user }}<span> | </span>{{ question.date_time }}</p><br>
+  <p class="footer text">{{ question.user }}<span> | </span>{{ question.date_time }}</p><br>
   <br />
   {% endfor %}
 </div>
