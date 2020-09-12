@@ -8,15 +8,19 @@
     Please <a class="link text" href="{% url 'login_user' %}">Login</a> or
     <a class="link text" href="{% url 'register' %}">Register new account</a>
   </p>
-  {% endif %} {% if logged_in %}
+  {% endif %} 
+
+  {% if logged_in %}
   <p>
-    <a class="link text" href="{% url 'userprofile' pk=user.pk %}">Profile</a
-    ><span> </span
-    ><a class="link text" href="{% url 'logout_user' %}">Logout</a>
+    <a class="link text" href="{% url 'userprofile' pk=user.pk %}">Profile</a>
+    <span> </span>
+    <a class="link text" href="{% url 'add_question' %}">Add Question</a>
+    <span> </span> 
+    <a class="link text" href="{% url 'logout_user' %}">Logout</a>
   </p>
   {% endif %}
 </div>
-<br />
+<br/>
 <div>
   {% for question in questions %}
   <p id="title">

@@ -6,7 +6,7 @@ class Question(models.Model):
     title = models.CharField(max_length=511, null=False, blank=False)
     body = models.TextField(null=False, blank=False)
     date_time = models.DateTimeField(auto_now_add=True)
-    user = models.OneToOneField(to=User, on_delete=models.CASCADE)
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE, blank=False, null=False)
     tag = models.ManyToManyField(to="Tag", related_name="questions", blank=True)
     answer = models.ManyToManyField("Answer",  related_name='questions', blank=True)
     star_by_user = models.ManyToManyField(to=User, related_name="questions", blank=True)
