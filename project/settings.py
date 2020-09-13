@@ -159,8 +159,6 @@ MARKDOWNIFY_MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code',
 
 MARKDOWNIFY_LINKIFY_SKIP_TAGS = ['pre', 'code', ]
 
-# MARKDOWNIFY_STRIP = False
-
 MARKDOWNIFY_BLEACH = False
 
 # Configure Django App for Heroku.

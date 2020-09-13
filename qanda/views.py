@@ -5,8 +5,7 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
-from django.views.generic import DetailView, ListView
-from django.views import View
+from django.http import JsonResponse
 
 from .models import Question, Tag, Answer
 from users.models import User
@@ -43,9 +42,21 @@ def delete_question(request, pk):
     questions = Question.objects.all()
     return render(request, 'users/userprofile.html', {'user': user, 'questions': questions})
 
-@login_required
 def question_detail(request, pk):
     question = Question.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = AnswerForm(data=request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.user = request.user
+            answer.save()
+            return redirect(to='add_answer', pk=question.pk)
+    else:
+        form = AnswerForm()
+    
     answers = Answer.objects.filter(questions=question)
-    return render(request, 'qanda/question_detail.html', {'question': question, 'answers': answers})
+    return render(request, 'qanda/question_detail.html', {'question': question, 'answers': answers, 'form': form})
 
+@login_required
+def add_answer(request, pk):
+    return redirect('question_detail', pk=pk)

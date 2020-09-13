@@ -27,4 +27,12 @@
     {% endfor %}
 </section>
 
+<form action="{% url 'question_detail' pk=question.pk %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p | markdownify }}
+    <div>
+        <button type="submit">Post Answer</button>
+    </div>
+</form>
+
 {% endblock %}
