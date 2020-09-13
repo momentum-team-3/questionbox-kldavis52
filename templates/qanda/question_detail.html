@@ -1,5 +1,6 @@
 {% extends "base.html" %} 
 {% block content %}
+{% load markdownify %}
 
 <p>
     <a class="link text" href="{% url 'questions_list' %}">Return to Questions</a>
@@ -8,7 +9,7 @@
 <p id="title">
     <strong>{{question.title}}</strong>
 </p>
-<p id="question">{{question.body}}</p>
+<p id="question">{{question.body | markdownify}}</p>
   
 <p class="tag text">
     {% for tag in question.tags.all %}
@@ -21,7 +22,7 @@
 
 <section class="answers">
     {% for answer in answers %}
-    <p class="answer">{{ answer.body }}</p>
+    <p class="answer">{{ answer.body | markdownify }}</p>
     <p class="footer text">{{ answer.user }}<span> | </span>{{ answer.date_time }}</p><br>
     {% endfor %}
 </section>

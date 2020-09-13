@@ -1,5 +1,6 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block content %}
+{% load markdownify %}
 
 <p>
   <a class="link text" href="{% url 'questions_list' %}">Return to Questions</a>
@@ -7,7 +8,7 @@
 
 <form action="{% url 'add_question' %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form.as_p | markdownify }}
     <div>
       <button type="submit">Post Question</button>
     </div>
