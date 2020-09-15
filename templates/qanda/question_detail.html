@@ -56,8 +56,8 @@
 
         $('#answer_form').prepend(
           `<div>
-                <p class="answer">{{answer.body}}</p>
-                <p class="footer text">{{answer.user}}<span> | </span>{{answer.date_time}}</p><br>
+                <p class="answer">'+ response.answer.body +'</p>
+                <p class="footer text">'+ response.answer.user +'<span> | </span>'+ response.answer.date_time +'</p><br>
                 </div>`
         )
       },
