@@ -1,0 +1,13 @@
+{% extends "base.html"%}
+
+{% block content %}
+<p><a class="link text" href="{% url 'questions_list' %}">Return to Questions</a></p><br>
+
+<h2>Register Here</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Create Account">
+    </form>
+    
+{% endblock %}

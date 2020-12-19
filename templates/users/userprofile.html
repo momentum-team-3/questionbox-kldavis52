@@ -1,0 +1,29 @@
+{% extends "base.html"%} 
+{% block content %}
+{% load markdownify %}
+
+<p>
+  <a class="link text" href="{% url 'questions_list' %}">Return to Questions</a>
+</p>
+
+<h2>Hello {{ user }}, welcome to your profile</h2>
+
+{% for question in questions %}
+<p id="title">
+  <strong>{{question.title}}</strong>
+</p>
+<p id="question">{{question.body | markdownify}}</p>
+
+<p class="text">
+  {% for tag in question.tags.all %}
+    {{tag}}
+  {% endfor %}
+</p>
+
+<p class="text date-time" id="date-time">{{question.date_time}}</p>
+<p><a href="{% url 'delete_question' pk=question.pk %}">Delete Question</a></p>
+<br>
+
+{% endfor %}
+
+{% endblock %}
